@@ -1,0 +1,17 @@
+.todo-list {
+  list-style: none;
+  font-weight: bold;
+  color: gray;
+  margin: 0;
+  padding: 0;
+}
+.todo-list__item input {
+  border: none;
+  background-color: transparent;
+}
+.todo-list__item.done {
+  text-decoration: line-through;
+  color: forestgreen;
+}
+
+/*# sourceMappingURL=main.css.map */
