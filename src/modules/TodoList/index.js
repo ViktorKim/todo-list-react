@@ -3,7 +3,6 @@ import INIT_STATE from './InitState';
 export const TodoListReducer = ( state = INIT_STATE, action ) => {
     let _todoList = state.todo_list;
     let _nextItemID = state.info.nextID;
-    console.log(_todoList);
     switch (action.type) {
         case 'ADD':
             _todoList[_nextItemID] = (action.payload);
@@ -33,10 +32,12 @@ export const TodoListReducer = ( state = INIT_STATE, action ) => {
                 todo_list: _todoList
             };
             break;
+        case '@@INIT':
+            console.log('Redux initialized');
+            break;
         default:
             console.log('Undefined action');
     }
-    console.log(state);
     localStorage.setItem('STORAGE', JSON.stringify(state));
 
     return state;
