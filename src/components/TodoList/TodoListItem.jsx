@@ -32,7 +32,7 @@ const TodoListItem = ({name, isDone, id, actions}) => {
 
 export default connect(
     state => ({}),
-    dispatch => (function mapDispatchToProps(dispatch) {
+    dispatch => {
         return {
             actions: {
                 removeTodo: (id) => {
@@ -46,5 +46,5 @@ export default connect(
                 },
             }
         }
-    })
+    }
 )(TodoListItem);
