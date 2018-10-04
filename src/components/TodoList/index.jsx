@@ -3,11 +3,14 @@
  */
 
 import React from 'react';
+
+import {connect} from 'react-redux';
+
 import TodoListItem from './TodoListItem';
 
 import './main.css';
 
-const TodoList = ({storage, action}) => {
+const TodoList = ({storage, actions}) => {
 
     function addTodo(e) {
         e.preventDefault();
@@ -17,22 +20,9 @@ const TodoList = ({storage, action}) => {
                 name: TODO_INPUT.value,
                 isDone: false,
             };
-            action('ADD', NEW_DATA);
+            actions.addTodo(NEW_DATA);
             TODO_INPUT.value = '';
         }
-    }
-
-    function removeTodoByID(id) {
-        action('REMOVE', id);
-    }
-
-    function editTodo(todo) {
-        action('EDIT', todo);
-        console.log(todo);
-    }
-
-    function toggleTodoStatus(id) {
-        action('TOGGLE_STATUS', id);
     }
 
     return (
@@ -40,7 +30,7 @@ const TodoList = ({storage, action}) => {
             <form action="#" className='add-todo' onSubmit={addTodo}>
                 <div className="form-group">
                     <div className="input-group">
-                        <input type="text" placeholder='Add new Todo' name='todoName' className='form-control' />
+                        <input type="text" placeholder='Add new Todo' name='todoName' className='form-control'/>
                         <div className='input-group-append '>
                             <button className='btn btn-success'>Add</button>
                         </div>
@@ -55,9 +45,6 @@ const TodoList = ({storage, action}) => {
                                           id={id}
                                           name={storage.todo_list[id].name}
                                           isDone={storage.todo_list[id].isDone}
-                                          removeAction={removeTodoByID}
-                                          editAction={editTodo}
-                                          toggleStatusAction={toggleTodoStatus}
                             />
                         );
                     })
@@ -67,4 +54,17 @@ const TodoList = ({storage, action}) => {
     );
 };
 
-export default TodoList;
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: {
+            addTodo: (data) => {
+                dispatch({type: 'ADD', payload: data});
+            },
+        }
+    }
+}
+
+export default connect(
+    state=>({}),
+    mapDispatchToProps
+)(TodoList);

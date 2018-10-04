@@ -3,19 +3,20 @@
  */
 
 import React from 'react';
+import {connect} from 'react-redux';
 
-const TodoListItem = ({name, isDone, id, removeAction, editAction, toggleStatusAction}) => {
+const TodoListItem = ({name, isDone, id, actions}) => {
 
     function removeTodo() {
-        removeAction(id);
+        actions.removeTodo(id);
     }
 
     function editTodo(e) {
-        editAction({id: id, value: e.target.value});
+        actions.editTodo({id: id, value: e.target.value});
     }
 
     function toggleTodoStatus() {
-        toggleStatusAction(id);
+        actions.toggleTodoStatus(id);
     }
 
     return (
@@ -29,4 +30,21 @@ const TodoListItem = ({name, isDone, id, removeAction, editAction, toggleStatusA
     );
 };
 
-export default TodoListItem;
+export default connect(
+    state => ({}),
+    dispatch => (function mapDispatchToProps(dispatch) {
+        return {
+            actions: {
+                removeTodo: (id) => {
+                    dispatch({type: 'REMOVE', payload: id});
+                },
+                editTodo: (data) => {
+                    dispatch({type: 'EDIT', payload: data});
+                },
+                toggleTodoStatus: (id) => {
+                    dispatch({type: 'TOGGLE_STATUS', payload: id});
+                },
+            }
+        }
+    })
+)(TodoListItem);
