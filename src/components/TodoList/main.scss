@@ -1,20 +1,55 @@
+$green: #28a745;
+$gray: #495057;
+
+
 .todo-list__wrapper{
 
 }
 .todo-list{
   list-style: none;
   font-weight: bold;
-  color: gray;
+  color: $gray;
   margin: 0;
   padding: 0;
   &__item{
-    input{
+    position: relative;
+    .todo-status{
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      display: inline-block;
+      border: 2px solid $gray;
+      height: 38px;
+      width: 38px;
+      border-radius: 5px;
+      input[type='checkbox']{
+        display: none;
+      }
+    }
+    .todo{
       border: none;
       background-color: transparent;
+      padding-left: 50px;
+      font-weight: bold;
+      font-size: 1.2em;
+      color: $gray;
+    }
+    .remove{
+      position: absolute;
+      right: 0;
+      top: 0;
     }
     &.done{
-      text-decoration: line-through;
-      color: forestgreen;
+      .todo-status{
+        border-color: $green;
+        background-image: url('./checked.svg');
+        background-repeat: no-repeat;
+      }
+      .todo{
+        color: $green;
+        text-decoration: line-through;
+      }
     }
   }
 }

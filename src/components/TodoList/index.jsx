@@ -31,6 +31,10 @@ const TodoList = ({storage, action}) => {
         console.log(todo);
     }
 
+    function toggleTodoStatus(id) {
+        action('TOGGLE_STATUS', id);
+    }
+
     return (
         <div className="todo-list__wrapper">
             <form action="#" className='add-todo' onSubmit={addTodo}>
@@ -53,6 +57,7 @@ const TodoList = ({storage, action}) => {
                                           isDone={storage.todo_list[id].isDone}
                                           removeAction={removeTodoByID}
                                           editAction={editTodo}
+                                          toggleStatusAction={toggleTodoStatus}
                             />
                         );
                     })

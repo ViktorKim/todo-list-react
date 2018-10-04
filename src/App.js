@@ -51,6 +51,10 @@ class App extends Component {
                 _todoList[data.id].name = data.value;
                 this.setState({todo_list: _todoList});
                 break;
+            case 'TOGGLE_STATUS':
+                _todoList[data].isDone = !_todoList[data].isDone;
+                this.setState({todo_list: _todoList});
+                break;
             default:
                 console.log('Undefined action');
         }
