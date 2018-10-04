@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 
 const PageHeader = () => {
     return (
@@ -25,7 +25,8 @@ const PageHeader = () => {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div className="navbar-nav">
-                            <Link className="nav-item nav-link" to="/todo-list">TodoList</Link>
+                            <NavLink className="nav-item nav-link" to="/todo-list">TodoList</NavLink>
+                            <NavLink className="nav-item nav-link" to="/about">About</NavLink>
                         </div>
                     </div>
                 </div>
