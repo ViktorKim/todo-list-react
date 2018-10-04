@@ -12,16 +12,31 @@ import './main.css';
 
 const TodoList = ({storage, actions}) => {
 
+    function validateData(data) {
+        if (data.trim() === ''){
+            return false;
+        }
+        for (let todo_id in storage.todo_list){
+            if (storage.todo_list.hasOwnProperty(todo_id) && storage.todo_list[todo_id].name.toLowerCase() === data.toLowerCase()) {
+                return false
+            }
+        }
+        return true;
+    }
+
     function addTodo(e) {
         e.preventDefault();
         const TODO_INPUT = e.target.todoName;
-        if (TODO_INPUT.value.trim() !== '') {
+        if ( validateData(TODO_INPUT.value) ) {
+            TODO_INPUT.classList.remove('is-invalid');
             const NEW_DATA = {
                 name: TODO_INPUT.value,
                 isDone: false,
             };
             actions.addTodo(NEW_DATA);
             TODO_INPUT.value = '';
+        } else {
+            TODO_INPUT.classList.add('is-invalid');
         }
     }
 
@@ -34,6 +49,7 @@ const TodoList = ({storage, actions}) => {
                         <div className='input-group-append '>
                             <button className='btn btn-success'>Add</button>
                         </div>
+                        <div className='invalid-feedback'>Can't add empty todo or maybe this todo is already exist</div>
                     </div>
                 </div>
             </form>
