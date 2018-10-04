@@ -1,12 +1,9 @@
-html, body, #root {
+html, body, #root{
   height: 100%;
 }
-
-.page__wrapper {
+.page__wrapper{
   min-height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-
-/*# sourceMappingURL=index.css.map */

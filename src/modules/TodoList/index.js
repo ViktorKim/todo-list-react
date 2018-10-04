@@ -1,6 +1,6 @@
 import INIT_STATE from './InitState';
 
-export const TodoListReducer = ( state = INIT_STATE, action ) => {
+export const TodoListReducer = (state = INIT_STATE, action) => {
     let _todoList = state.todo_list;
     let _nextItemID = state.info.nextID;
     switch (action.type) {

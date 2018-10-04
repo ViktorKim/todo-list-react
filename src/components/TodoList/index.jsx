@@ -13,10 +13,10 @@ import './main.css';
 const TodoList = ({storage, actions}) => {
 
     function validateData(data) {
-        if (data.trim() === ''){
+        if (data.trim() === '') {
             return false;
         }
-        for (let todo_id in storage.todo_list){
+        for (let todo_id in storage.todo_list) {
             if (storage.todo_list.hasOwnProperty(todo_id) && storage.todo_list[todo_id].name.toLowerCase() === data.toLowerCase()) {
                 return false
             }
@@ -27,7 +27,7 @@ const TodoList = ({storage, actions}) => {
     function addTodo(e) {
         e.preventDefault();
         const TODO_INPUT = e.target.todoName;
-        if ( validateData(TODO_INPUT.value) ) {
+        if (validateData(TODO_INPUT.value)) {
             TODO_INPUT.classList.remove('is-invalid');
             const NEW_DATA = {
                 name: TODO_INPUT.value,
@@ -81,6 +81,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(
-    state=>({}),
+    () => ({}),
     mapDispatchToProps
 )(TodoList);

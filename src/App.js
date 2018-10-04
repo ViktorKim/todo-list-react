@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
 import TodoList from './components/TodoList';
 import './App.css';
@@ -7,7 +7,7 @@ import './App.css';
 const App = ({props}) => {
     return (
         <div className="App container">
-            <TodoList storage={props} />
+            <TodoList storage={props}/>
         </div>
     );
 };
